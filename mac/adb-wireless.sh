@@ -3,7 +3,11 @@
 FIRST_DEVICE=$(adb devices | awk 'NR==2')
 
 if [ -z "$FIRST_DEVICE" ]; then
-    echo "Please connect your phone with a USB cable first!"
+    echo -e "Error: no device found!"
+    echo -e "1. Ensure your phone and computer are on the same Wi-Fi network"
+    echo -e "2. Connect your phone to this computer via a USB cable"
+    echo -e "3. Run the script again!"
+    
 else
     echo -e "Initializing adb-wireless..."
     IP_ADDRESS=$(adb shell "ip addr show wlan0 | grep -e wlan0$ | cut -d\" \" -f 6 | cut -d/ -f 1")
